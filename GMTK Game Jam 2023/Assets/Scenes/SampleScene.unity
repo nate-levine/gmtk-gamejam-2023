@@ -168,18 +168,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start:
-  - Testing A.
-  - Testing`(noun)`B.
-  - Testing C.
+  - There are always a few`(adjective)`Mark Browns every year. This year, this Mark
+    Brown was my favorite.
+  - A common theme this year among`(adjective)`Mark Browns was Mark Brown.
+  - One`(adjective)`take on Mark Brown this year was Mark Brown.
+  - This is another`(adjective)`Mark Brown, but with a completely different`(noun)`.
+  - This Mark Brown uses`(noun)`as inspiration for his`(noun)`.
+  - There's always something fun about Mark Brown when he`(verb)`. This Mark Brown
+    is a great example of that.
+  - Mark Brown doesn't always have to be`(adjective)`. This Mark Brown proves just
+    that.
+  - One of the more creative twists on Mark Brown, was using his`(noun)`as his`(noun)`instead.
+  - In this Jam there were a lot of Mark Browns where he was wearing a(n)`(noun)`.
+    This is my favorite take on the idea.
+  - Another ultra-popular Mark Brown was`(adjective)`Mark Brown.
+  - In terms of outside-the-box creativity,`(adjective)`Mark Brown takes the cake.
+  - Would it really be a Mark Brown Jam, if there wasn't a(n)`(adjective)`Mark Brown
+  - As always, here's an honorable mention.
   mid:
-  - Testing A.
-  - Testing`(noun)`B.
-  - Testing C.
+  - I really enjoyed his`(adjective)`eyes, and the fact that they`(verb)`when open.
+  - The juice in this one is just right. It feels`(adjective)`to just`(verb)`with
+    him.
+  - Mark Brown can`(verb)`in any direction, but is limited by the number of`(nouns)`he
+    has.
+  - This Mark Brown borrows from many other people for his`(noun)`.
+  - When Mark Brown`(verb)`, he also end up`(verb-ing)`.
+  - This Mark Brown has a great twist, where his`(noun)`is upside-down.
+  - Because his`(noun)` is tied to his leg, it really makes the way he`(verb)`more
+    engaging.
+  - This Mark Brown uses a`(noun)`to move around, like a(n)`(noun)`.
+  - That's right, he has a(n)`(noun)`, which lead to some pretty crazy looks.
+  - He's wearing a charming`(noun)`which really matches his`(noun)`.
+  - He`(verb)`, every time he`(verb)`, which leads to a pretty chaotic person.
+  - His skin is`(adjective)`, which allows him to`(verb)`.
+  - He can`(verb)`like any other Mark Brown, but he can also`(verb)`backwards.
   end:
-  - Testing`(noun)*(noun)`.
-  - Testing`(noun)`.
-  - Testing F.
---- !u!1 &474833838
+  - This gives him an extra layer of`(noun)`, without making him feel too`(adjective)`.
+  - I could definitely see this Mark Brown expanded further, maybe even into a full
+    person
+  - Although enjoyable, I think it might be more fun to give him a few more`(nouns)`.
+  - In terms of feedback, I would perhaps make his`(noun)`a bit more`(adjective)`
+  - I had a ton of fun seeing how`(adjective)`things could get.
+  - His`(noun)`is a wonderful example of why it's important to think outside the
+    box, when following the theme.
+  - My only suggestion is, give him a(n)`(noun)`.
+  - This Mark Brown exceeds expectations. Buy this Mark Brown for a drink when you
+    have the chance.
+  - Some Mark Browns just put a smile on my face, and this is one of them.
+  - This ultra-polished Mark Brown is extremely`(adjective)`. I had to force myself
+    to stop looking at him, in order to move onto other Mark Browns.
+  - He's a clever and original idea for Mark Brown, with endless ways to expand on
+    the concept.
+--- !u!1 &204735169
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,74 +227,81 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 474833839}
-  - component: {fileID: 474833841}
-  - component: {fileID: 474833840}
-  m_Layer: 5
-  m_Name: Mark
+  - component: {fileID: 204735172}
+  - component: {fileID: 204735171}
+  - component: {fileID: 204735170}
+  m_Layer: 0
+  m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &474833839
-RectTransform:
+--- !u!23 &204735170
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474833838}
+  m_GameObject: {fileID: 204735169}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &204735171
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204735169}
+  m_Mesh: {fileID: 6894428203817054813, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+--- !u!4 &204735172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204735169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 462.09174, y: 297.57675, z: -732.2893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1068658982}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 134}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &474833840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474833838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &474833841
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474833838}
-  m_CullTransparentMesh: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,8 +509,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 250
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -487,13 +534,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -200}
+  m_LocalPosition: {x: 413, y: 249, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &972304128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 972304129}
+  m_Layer: 0
+  m_Name: Mark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &972304129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972304128}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 483, y: 220, z: -335}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1769466118}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1068658978
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +666,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 953450230}
-  - {fileID: 474833839}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,6 +720,136 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1769466117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 972304129}
+    m_Modifications:
+    - target: {fileID: -9003323146575883303, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a830be769b8bd6d4eb66c0f623d2e456, type: 2}
+    - target: {fileID: -8768133303093192197, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ed1693e534afb34aa885b1757a99811, type: 2}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.871216
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 102.851944
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -392.61133
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7918335002988649766, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 655db599e4cf8bd4889a7c476bc01a25, type: 2}
+    - target: {fileID: -7493596028755563170, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.841
+      objectReference: {fileID: 0}
+    - target: {fileID: -7493596028755563170, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7023974396876390944, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a830be769b8bd6d4eb66c0f623d2e456, type: 2}
+    - target: {fileID: -6362509722343219229, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: -6362509722343219229, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6362509722343219229, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4450303550400443120, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bcb8209a2536fd4885bd184a5f84761, type: 2}
+    - target: {fileID: -3649840607643758702, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ed1693e534afb34aa885b1757a99811, type: 2}
+    - target: {fileID: -2245623774801616189, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bcb8209a2536fd4885bd184a5f84761, type: 2}
+    - target: {fileID: -1823322365421230674, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a830be769b8bd6d4eb66c0f623d2e456, type: 2}
+    - target: {fileID: 882129737928793925, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a830be769b8bd6d4eb66c0f623d2e456, type: 2}
+    - target: {fileID: 919132149155446097, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Name
+      value: markbrown
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695666860197271449, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 655db599e4cf8bd4889a7c476bc01a25, type: 2}
+    - target: {fileID: 7339356831882890532, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a830be769b8bd6d4eb66c0f623d2e456, type: 2}
+    - target: {fileID: 8442510506162454399, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 655db599e4cf8bd4889a7c476bc01a25, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+--- !u!4 &1769466118 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9b71e3997567011488d6d87d39fb94b4, type: 3}
+  m_PrefabInstance: {fileID: 1769466117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1794943393
 GameObject:
   m_ObjectHideFlags: 0
