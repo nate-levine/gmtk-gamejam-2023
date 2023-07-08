@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MadLibs : MonoBehaviour
 {
-    public string phrase;
     public GameObject staticTextPrefab;
     public GameObject dynamicTextPrefab;
+    [SerializeField] string phrase;
 
     public int maximumNumberOfLines;
     public float lineWidth;
@@ -22,20 +23,104 @@ public class MadLibs : MonoBehaviour
     [SerializeField] float canvasWidth;
     [SerializeField] float canvasHeight;
 
+    PhrasesPull phrasesPull;
+    PhrasesPush phrasesPush;
+
     private float offsetSum;
     private float lineTotal;
     private int breakIndex;
 
+    [SerializeField] bool textInitialized;
+
+    private bool waitFrame;
+
     void Start()
     {
+        waitFrame = false;
         canvasWidth = GetComponent<RectTransform>().sizeDelta.x;
         canvasHeight = GetComponent<RectTransform>().sizeDelta.y;
 
+        phrasesPull = PhrasesPull.Instance;
+        phrasesPush = PhrasesPush.Instance;
+
+        textInitialized = false;
+        PullPhrases();
+        GenerateText();
+        textInitialized = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (textInitialized)
+        {
+            breakIndex = 0;
+            int lineIndex = 0;
+
+            for (int i = 0; i < maximumNumberOfLines; i++)
+            {
+                if (breakIndex < types.Count)
+                {
+                    breakIndex = FormatLine(lineIndex);
+                    lineIndex++;
+                }
+            }
+        }
+
+        if (waitFrame)
+        {
+            GenerateText();
+            waitFrame = false;
+        }
+
+        if (Input.GetKey(KeyCode.Return) && Manager.Instance.reviewsLeft > 0)
+        {
+            Manager.Instance.holdBuffer += 1.0f * Time.deltaTime;
+
+            if (Manager.Instance.holdBuffer >= 1.0f)
+            {
+                Manager.Instance.holdBuffer = 0.0f;
+
+                textInitialized = false;
+                PushPhrases();
+                DeleteText();
+
+                Manager.Instance.reviewsLeft--;
+
+                if (Manager.Instance.reviewsLeft > 0)
+                {
+                    PullPhrases();
+                    waitFrame = true;
+                    textInitialized = true;
+                }
+            }
+        }
+        else if (Manager.Instance.holdBuffer > 0)
+        {
+            Manager.Instance.holdBuffer -= 1.0f * Time.deltaTime;
+
+            if (Manager.Instance.holdBuffer < 0.0f)
+            {
+                Manager.Instance.holdBuffer = 0.0f;
+            }
+        }
+    }
+
+    public void PullPhrases()
+    {
+        int startIndex = UnityEngine.Random.Range(0, phrasesPull.start.Count);
+        int endIndex = UnityEngine.Random.Range(0, phrasesPull.end.Count);
+
+        phrase = phrasesPull.GetStart(startIndex) + " " + phrasesPull.GetEnd(endIndex);
+    }
+
+    public void GenerateText()
+    {
         SplitString();
 
         for (int i = 0; i < texts.Count; i++)
         {
-            
+
             if (types[i] == 0)
             {
                 GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -53,6 +138,49 @@ public class MadLibs : MonoBehaviour
                 transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<TMP_Text>().text = texts[i];
             }
         }
+    }
+
+    public void DeleteText()
+    {
+        phrase = null;
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        texts.Clear();
+        types.Clear();
+    }
+
+    public void PushPhrases()
+    {
+        string pushPhrase = "";
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (i == transform.childCount - 2)
+            {
+                if (transform.GetChild(i).GetComponent<TMP_Text>())
+                {
+                    pushPhrase += transform.GetChild(i).GetComponent<TMP_Text>().text + " ";
+                }
+                else if (transform.GetChild(i).GetComponent<TMP_InputField>())
+                {
+                    pushPhrase += transform.GetChild(i).GetComponent<TMP_InputField>().text;
+                }
+            }
+            else if (transform.GetChild(i).GetComponent<TMP_Text>())
+            {
+                pushPhrase += transform.GetChild(i).GetComponent<TMP_Text>().text + " ";
+            }
+            else if (transform.GetChild(i).GetComponent<TMP_InputField>())
+            {
+                pushPhrase += transform.GetChild(i).GetComponent<TMP_InputField>().text + " ";
+            }
+        }
+
+        PhrasesPush.Instance.phrasesPush.Add(pushPhrase);
+
+        PullPhrases();
     }
 
     public void SplitString()
@@ -98,22 +226,6 @@ public class MadLibs : MonoBehaviour
                 {
                     type = 1;
                 }
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        breakIndex = 0;
-        int lineIndex = 0;
-
-        for (int i = 0; i < maximumNumberOfLines; i++)
-        {
-            if (breakIndex < types.Count)
-            {
-                breakIndex = FormatLine(lineIndex);
-                lineIndex++;
             }
         }
     }
