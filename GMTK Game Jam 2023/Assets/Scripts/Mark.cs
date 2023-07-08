@@ -77,10 +77,13 @@ public class Mark : MonoBehaviour
     {
         canChange = false;
 
-        int chinIndex = Random.Range(0, 5);
-        int eyeIndex = Random.Range(0, 5);
-        int hairIndex = Random.Range(0, 5);
-        Debug.Log("changeParts");
+        int[] indices = new int[3];
+        indices = GetComponent<MarkRarityAlgo>().Run();
+
+        int chinIndex = indices[0];
+        int eyeIndex =  indices[1];
+        int hairIndex = indices[2];
+
         for (int i = 0; i < chinTypes.Count; i++)
         {
             if (i == chinIndex)
