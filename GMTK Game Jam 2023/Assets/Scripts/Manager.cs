@@ -34,6 +34,8 @@ public class Manager : MonoBehaviour
         {
             MadLibs.Instance.RunTransition();
             reloadText = false;
+
+            Mark.Instance.canChange = true;
         }
         else if (transTime < 2.0f)
         {
