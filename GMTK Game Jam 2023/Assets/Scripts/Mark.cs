@@ -13,7 +13,7 @@ public class Mark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(480.0f, 230.0f, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), 0.0f, 0.0f);
+        transform.position = new Vector3(400.0f, 0.0f, 800.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), 0.0f, 0.0f);
     }
     public float TransitionFunc(float x)
     {
