@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PhrasesPull : MonoBehaviour
 {
-    public List<string> rating = new List<string>
-    {
-        "Testing 123.",
-        "Testing 456.",
-        "Testing 789.",
-    };
     public List<string> start = new List<string>
+    {
+    };
+    public List<string> mid = new List<string>
     {
         "Testing A.",
         "Testing`(noun)`B.",
@@ -31,13 +28,13 @@ public class PhrasesPull : MonoBehaviour
             Instance = this;
     }
 
-    public string GetRating(int index)
-    {
-        return rating[index];
-    }
     public string GetStart(int index)
     {
         return start[index];
+    }
+    public string GetMid(int index)
+    {
+        return mid[index];
     }
     public string GetEnd(int index)
     {

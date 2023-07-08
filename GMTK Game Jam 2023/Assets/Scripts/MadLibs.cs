@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class MadLibs : MonoBehaviour
 {
+    public static MadLibs Instance { get; private set; }
+
     public GameObject staticTextPrefab;
     public GameObject dynamicTextPrefab;
     [SerializeField] string phrase;
@@ -24,7 +26,6 @@ public class MadLibs : MonoBehaviour
     [SerializeField] float canvasHeight;
 
     PhrasesPull phrasesPull;
-    PhrasesPush phrasesPush;
 
     private float offsetSum;
     private float lineTotal;
@@ -34,14 +35,19 @@ public class MadLibs : MonoBehaviour
 
     private bool waitFrame;
 
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
     void Start()
     {
         waitFrame = false;
-        canvasWidth = GetComponent<RectTransform>().sizeDelta.x;
-        canvasHeight = GetComponent<RectTransform>().sizeDelta.y;
+        canvasWidth = transform.parent.GetComponent<RectTransform>().sizeDelta.x;
+        canvasHeight = transform.parent.GetComponent<RectTransform>().sizeDelta.y;
 
         phrasesPull = PhrasesPull.Instance;
-        phrasesPush = PhrasesPush.Instance;
 
         textInitialized = false;
         PullPhrases();
@@ -72,46 +78,43 @@ public class MadLibs : MonoBehaviour
             GenerateText();
             waitFrame = false;
         }
+    }
 
-        if (Input.GetKey(KeyCode.Return) && Manager.Instance.reviewsLeft > 0)
+    public void RunTransition()
+    {
+        textInitialized = false;
+        PushPhrases();
+        DeleteText();
+        PullPhrases();
+        waitFrame = true;
+        textInitialized = true;
+    }
+
+    public bool CheckFilled()
+    {
+        bool filled = true;
+
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Manager.Instance.holdBuffer += 1.0f * Time.deltaTime;
-
-            if (Manager.Instance.holdBuffer >= 1.0f)
+            if (transform.GetChild(i).GetComponent<TMP_InputField>())
             {
-                Manager.Instance.holdBuffer = 0.0f;
-
-                textInitialized = false;
-                PushPhrases();
-                DeleteText();
-
-                Manager.Instance.reviewsLeft--;
-
-                if (Manager.Instance.reviewsLeft > 0)
+                if (transform.GetChild(i).GetComponent<TMP_InputField>().text == "")
                 {
-                    PullPhrases();
-                    waitFrame = true;
-                    textInitialized = true;
+                    filled = false;
                 }
             }
         }
-        else if (Manager.Instance.holdBuffer > 0)
-        {
-            Manager.Instance.holdBuffer -= 1.0f * Time.deltaTime;
 
-            if (Manager.Instance.holdBuffer < 0.0f)
-            {
-                Manager.Instance.holdBuffer = 0.0f;
-            }
-        }
+        return filled;
     }
 
     public void PullPhrases()
     {
         int startIndex = UnityEngine.Random.Range(0, phrasesPull.start.Count);
+        int midIndex = UnityEngine.Random.Range(0, phrasesPull.mid.Count);
         int endIndex = UnityEngine.Random.Range(0, phrasesPull.end.Count);
 
-        phrase = phrasesPull.GetStart(startIndex) + " " + phrasesPull.GetEnd(endIndex);
+        phrase = phrasesPull.GetStart(startIndex) + " " + phrasesPull.GetMid(midIndex) + " " + phrasesPull.GetEnd(endIndex);
     }
 
     public void GenerateText()
@@ -123,7 +126,7 @@ public class MadLibs : MonoBehaviour
 
             if (types[i] == 0)
             {
-                GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(1000.0f, 1000.0f, 0), Quaternion.identity);
                 newStaticText.name = "Static Text " + i.ToString();
                 newStaticText.transform.SetParent(transform);
 
@@ -131,7 +134,7 @@ public class MadLibs : MonoBehaviour
             }
             else if (types[i] == 1)
             {
-                GameObject newDynamicText = Instantiate(dynamicTextPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                GameObject newDynamicText = Instantiate(dynamicTextPrefab, new Vector3(1000.0f, 1000.0f, 0), Quaternion.identity);
                 newDynamicText.name = "Editable Text " + i.ToString();
                 newDynamicText.transform.SetParent(transform);
 
@@ -177,8 +180,6 @@ public class MadLibs : MonoBehaviour
                 pushPhrase += transform.GetChild(i).GetComponent<TMP_InputField>().text + " ";
             }
         }
-
-        PhrasesPush.Instance.phrasesPush.Add(pushPhrase);
 
         PullPhrases();
     }
@@ -230,6 +231,22 @@ public class MadLibs : MonoBehaviour
         }
     }
 
+    public float TransitionFunc(float x)
+    {
+        if (x <= 1.0f)
+        {
+            return ((-x + 0.0f) * 1000.0f);
+        }
+        else if (x < 2.0f)
+        {
+            return ((-x + 2.0f) * 1000.0f);
+        }
+        else
+        {
+            return ((-x + 2.0f) * 1000.0f);
+        }
+    }
+
     public int FormatLine(int lineIndex)
     {
         offsetSum = 0.0f;
@@ -272,12 +289,12 @@ public class MadLibs : MonoBehaviour
 
     public void FormatStaticText(int i, int lineIndex)
     {
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -50.0f, 0.0f);
     }
 
     public void FormatDynamicText(int i, int lineIndex)
     {
         transform.GetChild(i).GetComponent<LayoutElement>().minWidth = transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -50.0f, 0.0f);
     }
 }

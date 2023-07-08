@@ -7,8 +7,8 @@ public class Manager : MonoBehaviour
 {
     public static Manager Instance;
 
-    public int reviewsLeft;
-    public float holdBuffer;
+    public float transTime;
+    public bool reloadText;
 
     private void Awake()
     {
@@ -16,12 +16,32 @@ public class Manager : MonoBehaviour
             Instance = this;
     }
 
-    private void Start()
+    public void Start()
     {
-        holdBuffer = 0.0f;
+        reloadText = true;
+        transTime = 1.0f;
     }
-    void Update()
+
+    public void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Return) && transTime == 2.0f && MadLibs.Instance.CheckFilled())
+        {
+            transTime = 0.0f;
+            reloadText = true;
+
+        }
+        if (transTime > 1.0f && reloadText)
+        {
+            MadLibs.Instance.RunTransition();
+            reloadText = false;
+        }
+        else if (transTime < 2.0f)
+        {
+            transTime += 1.0f * Time.deltaTime;
+        }
+        else if (transTime > 2.0f)
+        {
+            transTime = 2.0f;
+        }
     }
 }
