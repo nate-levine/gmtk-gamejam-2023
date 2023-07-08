@@ -78,7 +78,11 @@ public class Manager : MonoBehaviour
             {
                 MarkManager.Instance.EndSort();
                 endSort = false;
+                PhrasesPush.Instance.AddRatings();
             }
+        }
+        if (state == 9)
+        {
         }
     }
 }

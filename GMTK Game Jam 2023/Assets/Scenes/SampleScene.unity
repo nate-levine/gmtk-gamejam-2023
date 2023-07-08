@@ -229,9 +229,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rating:
-  - Testing 123.
-  - Testing 456.
-  - Testing 789.
+  - Rating 5.
+  - Rating 4.
+  - Rating 3.
+  - Rating 2.
+  - Rating 1.
   start:
   - Testing A.
   - Testing`(noun)`B.
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phrasesPush: []
+  phraseIndices: 
 --- !u!4 &920562471
 Transform:
   m_ObjectHideFlags: 0
@@ -745,8 +748,9 @@ GameObject:
   - component: {fileID: 2090462136}
   - component: {fileID: 2090462138}
   - component: {fileID: 2090462137}
+  - component: {fileID: 2090462139}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LoadBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,3 +814,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090462135}
   m_CullTransparentMesh: 1
+--- !u!114 &2090462139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090462135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b14a8453b719bb4e966d831540b4437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

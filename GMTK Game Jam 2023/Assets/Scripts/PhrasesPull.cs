@@ -6,9 +6,11 @@ public class PhrasesPull : MonoBehaviour
 {
     public List<string> rating = new List<string>
     {
-        "Testing 123.",
-        "Testing 456.",
-        "Testing 789.",
+        "Rating 5.",
+        "Rating 4.",
+        "Rating 3.",
+        "Rating 2.",
+        "Rating 1.",
     };
     public List<string> start = new List<string>
     {

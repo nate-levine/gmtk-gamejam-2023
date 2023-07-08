@@ -156,6 +156,7 @@ public class MadLibs : MonoBehaviour
     {
         string pushPhrase = "";
 
+
         for (int i = 0; i < transform.childCount; i++)
         {
             if (i == transform.childCount - 2)
