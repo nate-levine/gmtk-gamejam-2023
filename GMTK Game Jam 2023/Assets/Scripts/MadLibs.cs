@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -126,7 +125,7 @@ public class MadLibs : MonoBehaviour
 
             if (types[i] == 0)
             {
-                GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(1000.0f, 1000.0f, 0), Quaternion.identity);
+                GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(10000.0f, 10000.0f, 0), Quaternion.identity);
                 newStaticText.name = "Static Text " + i.ToString();
                 newStaticText.transform.SetParent(transform);
 
@@ -134,7 +133,7 @@ public class MadLibs : MonoBehaviour
             }
             else if (types[i] == 1)
             {
-                GameObject newDynamicText = Instantiate(dynamicTextPrefab, new Vector3(1000.0f, 1000.0f, 0), Quaternion.identity);
+                GameObject newDynamicText = Instantiate(dynamicTextPrefab, new Vector3(10000.0f, 10000.0f, 0), Quaternion.identity);
                 newDynamicText.name = "Editable Text " + i.ToString();
                 newDynamicText.transform.SetParent(transform);
 
@@ -235,15 +234,15 @@ public class MadLibs : MonoBehaviour
     {
         if (x <= 1.0f)
         {
-            return ((-x + 0.0f) * 1000.0f);
+            return ((-x + 0.0f) * 2000.0f);
         }
         else if (x < 2.0f)
         {
-            return ((-x + 2.0f) * 1000.0f);
+            return ((-x + 2.0f) * 2000.0f);
         }
         else
         {
-            return ((-x + 2.0f) * 1000.0f);
+            return ((-x + 2.0f) * 2000.0f);
         }
     }
 
@@ -289,12 +288,12 @@ public class MadLibs : MonoBehaviour
 
     public void FormatStaticText(int i, int lineIndex)
     {
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -50.0f, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -250.0f, 0.0f);
     }
 
     public void FormatDynamicText(int i, int lineIndex)
     {
         transform.GetChild(i).GetComponent<LayoutElement>().minWidth = transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -50.0f, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), -250.0f, 0.0f);
     }
 }
