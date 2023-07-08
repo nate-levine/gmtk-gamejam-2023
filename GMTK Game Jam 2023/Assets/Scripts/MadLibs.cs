@@ -2,36 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MadLibs : MonoBehaviour
 {
+    public string phrase;
     public GameObject staticTextPrefab;
     public GameObject dynamicTextPrefab;
 
-    public List<string> texts;
-    public List<int> types;
-
-    public float canvasWidth;
-    public float canvasHeight;
-
     public int maximumNumberOfLines;
     public float lineWidth;
+    public float lineSpacing;
+    public float wordSpacing;
 
-    float offsetSum;
-    float lineTotal;
+    [SerializeField] List<string> texts;
+    [SerializeField] List<int> types;
+    [SerializeField] float canvasWidth;
+    [SerializeField] float canvasHeight;
 
-    int breakIndex;
-
+    private float offsetSum;
+    private float lineTotal;
+    private int breakIndex;
 
     void Start()
     {
         canvasWidth = GetComponent<RectTransform>().sizeDelta.x;
         canvasHeight = GetComponent<RectTransform>().sizeDelta.y;
 
-        for (int i = 0; i < types.Count; i++)
+        SplitString();
+
+        for (int i = 0; i < texts.Count; i++)
         {
+            
             if (types[i] == 0)
             {
                 GameObject newStaticText = Instantiate(staticTextPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -40,13 +44,60 @@ public class MadLibs : MonoBehaviour
 
                 transform.GetChild(i).GetComponent<TMP_Text>().text = texts[i];
             }
-            if (types[i] == 1)
+            else if (types[i] == 1)
             {
                 GameObject newDynamicText = Instantiate(dynamicTextPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                 newDynamicText.name = "Editable Text " + i.ToString();
                 newDynamicText.transform.SetParent(transform);
 
                 transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<TMP_Text>().text = texts[i];
+            }
+        }
+    }
+
+    public void SplitString()
+    {
+        string[] separatingStrings = { " ", "`", "*" };
+        string[] words = phrase.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+        texts.AddRange(words);
+
+        List<string> splitChars = new List<string>();
+
+        // Modified. Credit: GSerg, StackOverflow
+        int accumulatedLength = 0;
+        foreach (string word in words)
+        {
+            accumulatedLength += word.Length + 1;
+            if (accumulatedLength <= phrase.Length)
+            {
+                splitChars.Add(phrase[accumulatedLength - 1].ToString());
+            }
+        }
+        //
+
+        int type = 0;
+        for (int i = 0; i < texts.Count; i++)
+        {
+            types.Add(type);
+
+            if (i < texts.Count - 1)
+            {
+                if (type == 0 && splitChars[i] == " ")
+                {
+                    type = 0;
+                }
+                else if (type == 0 && splitChars[i] == "`")
+                {
+                    type = 1;
+                }
+                else if (type == 1 && splitChars[i] == "`")
+                {
+                    type = 0;
+                }
+                else if (type == 1 && splitChars[i] == "*")
+                {
+                    type = 1;
+                }
             }
         }
     }
@@ -72,20 +123,20 @@ public class MadLibs : MonoBehaviour
         offsetSum = 0.0f;
         lineTotal = 0.0f;
 
-        for (int i = breakIndex; i < types.Count; i++)
+        for (int i = breakIndex; i < texts.Count; i++)
         {
             if (lineTotal < lineWidth)
             {
-                lineTotal += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+                lineTotal += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + wordSpacing;
 
                 if (lineTotal >= lineWidth)
                 {
-                    lineTotal -= transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+                    lineTotal -= transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + wordSpacing;
                 }
             }
         }
 
-        for (int i = breakIndex; i < types.Count; i++)
+        for (int i = breakIndex; i < texts.Count; i++)
         {
             if (types[i] == 0)
             {
@@ -96,7 +147,7 @@ public class MadLibs : MonoBehaviour
                 FormatDynamicText(i, lineIndex);
             }
 
-            offsetSum += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+            offsetSum += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + wordSpacing;
 
             if (offsetSum > lineWidth)
             {
@@ -104,17 +155,17 @@ public class MadLibs : MonoBehaviour
             }
         }
 
-        return types.Count;
+        return texts.Count;
     }
 
     public void FormatStaticText(int i, int lineIndex)
     {
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -50.0f, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
     }
 
     public void FormatDynamicText(int i, int lineIndex)
     {
         transform.GetChild(i).GetComponent<LayoutElement>().minWidth = transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -50.0f, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
     }
 }
