@@ -12,6 +12,10 @@ public class Manager : MonoBehaviour
     public int reviewsLeft;
     public float holdBuffer;
 
+    private bool runMadLibs = true;
+    private bool runSort = true;
+    private bool endSort = true;
+
     private void Awake()
     {
         if (Instance == null)
@@ -35,6 +39,11 @@ public class Manager : MonoBehaviour
                 Manager.Instance.holdBuffer = 0.0f;
 
                 state++;
+
+                if (state > 1 && state <= 6)
+                {
+                    MadLibs.Instance.Push();
+                }
             }
         }
         else if (Manager.Instance.holdBuffer > 0)
@@ -49,7 +58,27 @@ public class Manager : MonoBehaviour
 
         if (state == 1)
         {
-            MadLibs.Instance.GetComponent<MadLibs>().RunMadLibs();
+            if (runMadLibs)
+            {
+                MadLibs.Instance.GetComponent<MadLibs>().RunMadLibs();
+                runMadLibs = false;
+            }
+        }
+        if (state == 6)
+        {
+            if (runSort)
+            {
+                MarkManager.Instance.RunSort();
+                runSort = false;
+            }
+        }
+        if (state == 7)
+        {
+            if (endSort)
+            {
+                MarkManager.Instance.EndSort();
+                endSort = false;
+            }
         }
     }
 }

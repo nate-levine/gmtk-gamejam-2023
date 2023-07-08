@@ -55,13 +55,12 @@ public class MadLibs : MonoBehaviour
         PullPhrases();
         GenerateText();
         textInitialized = true;
-        waitFrame = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Manager.Instance.state == 1)
+        if (Manager.Instance.state >= 1 && Manager.Instance.state <= 5)
         {
             if (textInitialized)
             {
@@ -81,27 +80,30 @@ public class MadLibs : MonoBehaviour
                 }
             }
 
-            /*if (waitFrame)
+            if (waitFrame)
             {
                 GenerateText();
                 waitFrame = false;
             }
+        }
+    }
 
-            if (Manager.Instance.reviewsLeft > 0 && Manager.Instance.state > 1)
+    public void Push()
+    {
+        if (Manager.Instance.reviewsLeft > 0)
+        {
+            textInitialized = false;
+            PushPhrases();
+            DeleteText();
+
+            Manager.Instance.reviewsLeft--;
+
+            if (Manager.Instance.reviewsLeft > 0)
             {
-                textInitialized = false;
-                PushPhrases();
-                DeleteText();
-
-                Manager.Instance.reviewsLeft--;
-
-                if (Manager.Instance.reviewsLeft > 0)
-                {
-                    PullPhrases();
-                    waitFrame = true;
-                    textInitialized = true;
-                }
-            }*/
+                PullPhrases();
+                waitFrame = true;
+                textInitialized = true;
+            }
         }
     }
 
@@ -271,12 +273,12 @@ public class MadLibs : MonoBehaviour
 
     public void FormatStaticText(int i, int lineIndex)
     {
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = Vector3.zero + new Vector3((transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
     }
 
     public void FormatDynamicText(int i, int lineIndex)
     {
         transform.GetChild(i).GetComponent<LayoutElement>().minWidth = transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = Vector3.zero + new Vector3((transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -lineSpacing, 0.0f);
     }
 }
