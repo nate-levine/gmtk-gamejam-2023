@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8689517543666971605}
   - component: {fileID: 3352099982205095468}
   m_Layer: 5
-  m_Name: Dynamic
+  m_Name: DynamicTextPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class MadLibs : MonoBehaviour
 {
+    public static MadLibs Instance { get; private set; }
+
     public GameObject staticTextPrefab;
     public GameObject dynamicTextPrefab;
     [SerializeField] string phrase;
@@ -34,7 +36,13 @@ public class MadLibs : MonoBehaviour
 
     private bool waitFrame;
 
-    void Start()
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
+    public void RunMadLibs()
     {
         waitFrame = false;
         canvasWidth = GetComponent<RectTransform>().sizeDelta.x;
@@ -47,40 +55,40 @@ public class MadLibs : MonoBehaviour
         PullPhrases();
         GenerateText();
         textInitialized = true;
+        waitFrame = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (textInitialized)
+        if (Manager.Instance.state == 1)
         {
-            breakIndex = 0;
-            int lineIndex = 0;
-
-            for (int i = 0; i < maximumNumberOfLines; i++)
+            if (textInitialized)
             {
-                if (breakIndex < types.Count)
+                if (Input.anyKey)
                 {
-                    breakIndex = FormatLine(lineIndex);
-                    lineIndex++;
+                    breakIndex = 0;
+                    int lineIndex = 0;
+
+                    for (int i = 0; i < maximumNumberOfLines; i++)
+                    {
+                        if (breakIndex < types.Count)
+                        {
+                            breakIndex = FormatLine(lineIndex);
+                            lineIndex++;
+                        }
+                    }
                 }
             }
-        }
 
-        if (waitFrame)
-        {
-            GenerateText();
-            waitFrame = false;
-        }
-
-        if (Input.GetKey(KeyCode.Return) && Manager.Instance.reviewsLeft > 0)
-        {
-            Manager.Instance.holdBuffer += 1.0f * Time.deltaTime;
-
-            if (Manager.Instance.holdBuffer >= 1.0f)
+            /*if (waitFrame)
             {
-                Manager.Instance.holdBuffer = 0.0f;
+                GenerateText();
+                waitFrame = false;
+            }
 
+            if (Manager.Instance.reviewsLeft > 0 && Manager.Instance.state > 1)
+            {
                 textInitialized = false;
                 PushPhrases();
                 DeleteText();
@@ -93,16 +101,7 @@ public class MadLibs : MonoBehaviour
                     waitFrame = true;
                     textInitialized = true;
                 }
-            }
-        }
-        else if (Manager.Instance.holdBuffer > 0)
-        {
-            Manager.Instance.holdBuffer -= 1.0f * Time.deltaTime;
-
-            if (Manager.Instance.holdBuffer < 0.0f)
-            {
-                Manager.Instance.holdBuffer = 0.0f;
-            }
+            }*/
         }
     }
 
