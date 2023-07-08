@@ -365,10 +365,10 @@ MonoBehaviour:
   staticTextPrefab: {fileID: 6653479180809016602, guid: 39b27c89653ffa64babe9feafe53bca4, type: 3}
   dynamicTextPrefab: {fileID: 7696011365407498343, guid: a19610b42a2512b4096e3e6dfc31c5b6, type: 3}
   phrase: 
-  maximumNumberOfLines: 5
+  maximumNumberOfLines: 4
   lineWidth: 1200
-  lineSpacing: 50
-  wordSpacing: 8
+  lineSpacing: 65
+  wordSpacing: 10
   texts: []
   types: 
   canvasWidth: 0
