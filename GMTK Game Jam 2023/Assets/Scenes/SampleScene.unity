@@ -417,15 +417,20 @@ MonoBehaviour:
   staticTextPrefab: {fileID: 6653479180809016602, guid: 39b27c89653ffa64babe9feafe53bca4, type: 3}
   dynamicTextPrefab: {fileID: 7696011365407498343, guid: a19610b42a2512b4096e3e6dfc31c5b6, type: 3}
   texts:
-  - (name)
-  - Brown without
+  - 'Now for an honorable mention. This '
+  - (adjective)
+  - Mark Brown blew me away with his
+  - (adjective)
+  - and
+  - (adjective)
+  - hair. This adds an extra layer of
   - (noun)
-  - 'or '
-  - (noun)
-  - .
-  types: 010000000000000001000000000000000100000000000000
+  - to the whole thing.
+  types: 000000000100000000000000010000000000000001000000000000000100000000000000
   canvasWidth: 0
   canvasHeight: 0
+  maximumNumberOfLines: 4
+  lineWidth: 400
 --- !u!1 &1794943393
 GameObject:
   m_ObjectHideFlags: 0

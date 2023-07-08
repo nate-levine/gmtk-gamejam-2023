@@ -16,7 +16,13 @@ public class MadLibs : MonoBehaviour
     public float canvasWidth;
     public float canvasHeight;
 
+    public int maximumNumberOfLines;
+    public float lineWidth;
+
     float offsetSum;
+    float lineTotal;
+
+    int breakIndex;
 
 
     void Start()
@@ -48,31 +54,67 @@ public class MadLibs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offsetSum = 0.0f;
+        breakIndex = 0;
+        int lineIndex = 0;
 
-        for (int i = 0; i < types.Count; i++)
+        for (int i = 0; i < maximumNumberOfLines; i++)
         {
-            if (types[i] == 0)
+            if (breakIndex < types.Count)
             {
-                FormatStaticText(i);
+                breakIndex = FormatLine(lineIndex);
+                lineIndex++;
             }
-            if (types[i] == 1)
-            {
-                FormatDynamicText(i);
-            }
-
-            offsetSum += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
         }
     }
 
-    public void FormatStaticText(int i)
+    public int FormatLine(int lineIndex)
     {
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position - new Vector3(canvasWidth / 2 - (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2), canvasHeight / 2, 0.0f) + new Vector3(offsetSum, 0.0f, 0.0f);
+        offsetSum = 0.0f;
+        lineTotal = 0.0f;
+
+        for (int i = breakIndex; i < types.Count; i++)
+        {
+            if (lineTotal < lineWidth)
+            {
+                lineTotal += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+
+                if (lineTotal >= lineWidth)
+                {
+                    lineTotal -= transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+                }
+            }
+        }
+
+        for (int i = breakIndex; i < types.Count; i++)
+        {
+            if (types[i] == 0)
+            {
+                FormatStaticText(i, lineIndex);
+            }
+            if (types[i] == 1)
+            {
+                FormatDynamicText(i, lineIndex);
+            }
+
+            offsetSum += transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x + 10;
+
+            if (offsetSum > lineWidth)
+            {
+                return i;
+            }
+        }
+
+        return types.Count;
     }
 
-    public void FormatDynamicText(int i)
+    public void FormatStaticText(int i, int lineIndex)
+    {
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -50.0f, 0.0f);
+    }
+
+    public void FormatDynamicText(int i, int lineIndex)
     {
         transform.GetChild(i).GetComponent<LayoutElement>().minWidth = transform.GetChild(i).transform.GetChild(0).transform.GetChild(1).GetComponent<RectTransform>().sizeDelta.x;
-        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position - new Vector3(canvasWidth / 2 - (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2), canvasHeight / 2, 0.0f) + new Vector3(offsetSum, 0.0f, 0.0f);
+        transform.GetChild(i).GetComponent<RectTransform>().localPosition = transform.position + new Vector3(-(canvasWidth / 2) + (transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2) - (lineTotal / 2), -(canvasHeight / 2), 0.0f) + new Vector3(offsetSum, lineIndex * -50.0f, 0.0f);
     }
 }
