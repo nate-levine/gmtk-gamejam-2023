@@ -5469,7 +5469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ef170ab0737144697f0c0c2aca9c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensityH: 5
+  intensityH: 2
   intensityV: 2
   canvas: 1
 --- !u!1 &963194225
@@ -16658,7 +16658,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2970685811119298296}
-  m_Mesh: {fileID: 2427220879104314308, guid: 3057ece9e4c83aa4a9ae2bf0684696f4, type: 3}
+  m_Mesh: {fileID: 2427220879104314308, guid: 4face39139ffbe5439a613fbf7bb701b, type: 3}
 --- !u!1 &7011993848358088766
 GameObject:
   m_ObjectHideFlags: 0
