@@ -28,7 +28,7 @@ public class MarkRarityAlgo : MonoBehaviour
 
     public int[] Run()
     {
-        if (range[0] + range[1] + range[2] >= 9)
+        if (range[0] + range[1] + range[2] >= 12)
         {
             combo = 2;
         }

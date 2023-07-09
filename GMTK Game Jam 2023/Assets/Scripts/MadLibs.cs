@@ -99,6 +99,8 @@ public class MadLibs : MonoBehaviour
             {
                 if (transform.GetChild(i).GetComponent<TMP_InputField>().text == "")
                 {
+                    transform.GetChild(i).GetComponent<InputField>().StopAnimation();
+
                     filled = false;
                 }
             }
