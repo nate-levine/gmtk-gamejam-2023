@@ -10,7 +10,7 @@ public class Manager : MonoBehaviour
     public float transTime;
     public bool reloadText;
 
-    private bool title;
+    public bool title;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class Manager : MonoBehaviour
     {
         if (title)
         {
-            if (Input.anyKey)
+            if (Input.GetKey(KeyCode.Return))
             {
                 title = false;
 
