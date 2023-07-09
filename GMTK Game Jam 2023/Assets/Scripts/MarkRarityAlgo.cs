@@ -28,29 +28,13 @@ public class MarkRarityAlgo : MonoBehaviour
 
     public int[] Run()
     {
-        if (range[0] + range[1] + range[2] >= 12)
+        if (runs >= 10)
         {
             combo = 2;
         }
-        if (range[0] + range[1] + range[2] >= 15)
+        if (runs >= 20)
         {
             combo = 3; 
-        }
-
-        int randomIncrement = UnityEngine.Random.Range(0, 3);
-        if (runs > 1)
-        {
-            if (range[randomIncrement] < 5)
-            {
-                if (runs < 10)
-                {
-                    range[randomIncrement] += 2;
-                }
-                if (runs >= 10)
-                {
-                    range[randomIncrement]++;
-                }
-            }
         }
 
         List<int> choices = new List<int>() { 0, 1, 2 };
@@ -69,21 +53,27 @@ public class MarkRarityAlgo : MonoBehaviour
 
         for (int loop = 0; loop < 5; loop++)
         {
-            if (cI == 0 && eI == 0 && hI == 0 && runs > 0)
+            if (runs == 1)
+            {
+                cI = 0;
+                eI = 0;
+                hI = 0;
+            }
+            if (cI == 0 && eI == 0 && hI == 0 && runs > 1)
             {
                 for (int i = 0; i < pickedIndices.Count; i++)
                 {
                     if (pickedIndices[i] == 0)
                     {
-                        cI = UnityEngine.Random.Range(0, range[0]);
+                        cI = UnityEngine.Random.Range(0, 5);
                     }
                     if (pickedIndices[i] == 1)
                     {
-                        eI = UnityEngine.Random.Range(0, range[0]);
+                        eI = UnityEngine.Random.Range(0, 5);
                     }
                     if (pickedIndices[i] == 2)
                     {
-                        hI = UnityEngine.Random.Range(0, range[0]);
+                        hI = UnityEngine.Random.Range(0, 5);
                     }
                 }
             }

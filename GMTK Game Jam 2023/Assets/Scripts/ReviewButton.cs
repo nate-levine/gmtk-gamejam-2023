@@ -89,8 +89,6 @@ public class ReviewButton : MonoBehaviour
         var main = starEmitter.GetComponent<ParticleSystem>().main;
         main.maxParticles = Random.Range(1, 6);
 
-        Debug.Log(main.maxParticles);
-
         down = true;
     }
     public void StopAnimation()
