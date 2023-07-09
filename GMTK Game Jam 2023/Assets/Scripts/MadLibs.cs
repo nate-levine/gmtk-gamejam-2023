@@ -244,7 +244,7 @@ public class MadLibs : MonoBehaviour
         }
         else
         {
-            return ((-x + 2.0f) * 2000.0f);
+            return 0.0f;
         }
     }
 

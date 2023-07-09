@@ -85,7 +85,7 @@ public class Mark : MonoBehaviour
         }
         else
         {
-            return ((x - 2.0f) * 1000.0f);
+            return 0.0f;
         }
     }
 
