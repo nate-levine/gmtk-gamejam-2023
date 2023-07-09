@@ -24,13 +24,12 @@ public class Manager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Return) && transTime == 2.0f && MadLibs.Instance.CheckFilled())
+        if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && MadLibs.Instance.CheckFilled())
         {
             transTime = 0.0f;
             reloadText = true;
 
             ReviewButton.Instance.PressAnimation();
-
         }
         if (transTime > 1.0f && reloadText)
         {
@@ -46,6 +45,10 @@ public class Manager : MonoBehaviour
         else if (transTime > 2.0f)
         {
             transTime = 2.0f;
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && !MadLibs.Instance.CheckFilled())
+        {
+            ReviewButton.Instance.StopAnimation();
         }
     }
 }
