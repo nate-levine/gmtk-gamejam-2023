@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Hardware;
 using UnityEngine;
 
 public class MarkRarityAlgo : MonoBehaviour
