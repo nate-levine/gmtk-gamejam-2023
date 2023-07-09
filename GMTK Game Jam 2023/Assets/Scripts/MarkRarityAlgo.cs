@@ -29,7 +29,7 @@ public class MarkRarityAlgo : MonoBehaviour
 
     public int[] Run()
     {
-        if (range[0] + range[1] + range[2] >= 8)
+        if (range[0] + range[1] + range[2] >= 9)
         {
             combo = 2;
         }
@@ -43,7 +43,14 @@ public class MarkRarityAlgo : MonoBehaviour
         {
             if (range[randomIncrement] < 5)
             {
-                range[randomIncrement]++;
+                if (runs < 10)
+                {
+                    range[randomIncrement] += 2;
+                }
+                if (runs >= 10)
+                {
+                    range[randomIncrement]++;
+                }
             }
         }
 
