@@ -17,6 +17,10 @@ public class Mark : MonoBehaviour
 
     public bool canChange;
 
+    public float chinOffset;
+    public float eyeOffset;
+    public float hairOffset;
+
     private void Awake()
     {
         if (Instance == null)
@@ -45,6 +49,10 @@ public class Mark : MonoBehaviour
         }
 
         canChange = true;
+
+        chinOffset = Random.Range(0.0f, 1.0f);
+        eyeOffset = Random.Range(0.0f, 1.0f);
+        hairOffset = Random.Range(0.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -56,6 +64,14 @@ public class Mark : MonoBehaviour
         }
 
         transform.position = new Vector3(400.0f, 100.0f, 100.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), 0.0f, 0.0f);
+
+
+        chinOffset += Time.deltaTime;
+        chins.transform.localPosition = new Vector3(0.02f * Mathf.Sin(chinOffset), 0.0f, 0.02f * Mathf.Cos(chinOffset));
+        eyeOffset += Time.deltaTime;
+        eyes.transform.localPosition = new Vector3(0.02f * Mathf.Sin(eyeOffset), 0.0f, 0.02f * Mathf.Cos(eyeOffset));
+        hairOffset += Time.deltaTime;
+        hairs.transform.localPosition = new Vector3(0.02f * Mathf.Sin(hairOffset), 0.0f, 0.02f * Mathf.Cos(hairOffset));
     }
     public float TransitionFunc(float x)
     {

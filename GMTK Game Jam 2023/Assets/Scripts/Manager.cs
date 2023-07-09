@@ -28,6 +28,11 @@ public class Manager : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (title)
         {
             if (Input.GetKey(KeyCode.Return))

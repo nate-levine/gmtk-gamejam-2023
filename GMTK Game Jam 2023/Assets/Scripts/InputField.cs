@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InputField : MonoBehaviour
+public class InputField : MonoBehaviour, IPointerDownHandler
 {
     public TMP_InputField inputField;
     public GameObject text;
@@ -31,11 +31,16 @@ public class InputField : MonoBehaviour
         stop = true;
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("test");
+        GetComponent<AudioSource>().Play();
+    }
+
     private void Update()
     {
         if (inputField.isFocused == true)
         {
-            GetComponent<AudioSource>().Play();
             inputField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(9.0f / 8.0f, 9.0f / 8.0f, 1.0f);
 
             /*if (Input.GetKeyDown(KeyCode.Return))
@@ -60,7 +65,6 @@ public class InputField : MonoBehaviour
         }
         else if (inputField.isFocused == false)
         {
-            GetComponent<AudioSource>().Play();
             inputField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(8.0f / 9.0f, 8.0f / 9.0f, 1.0f);
 
         }
