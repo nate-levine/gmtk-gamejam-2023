@@ -79,6 +79,7 @@ public class ReviewButton : MonoBehaviour
     public void PressAnimation()
     {
         click.Play();
+        transform.GetChild(5).GetComponent<AudioSource>().Play();
 
         starEmitter.GetComponent<ParticleSystem>().Clear();
         starEmitter.GetComponent<ParticleSystem>().Play();
@@ -95,6 +96,7 @@ public class ReviewButton : MonoBehaviour
     public void StopAnimation()
     {
         stop = true;
+        transform.GetChild(4).GetComponent<AudioSource>().Play();
     }
 
     private void Update()
@@ -132,6 +134,7 @@ public class ReviewButton : MonoBehaviour
 
         if (stop)
         {
+
             stopCounter += 2.0f * Time.deltaTime;
 
             transform.position = startPos + new Vector3(Mathf.Sin(stopCounter * 200.0f / (2 * Mathf.PI)) * 100.0f / (stopCounter * 100.0f), 0.0f, 0.0f);

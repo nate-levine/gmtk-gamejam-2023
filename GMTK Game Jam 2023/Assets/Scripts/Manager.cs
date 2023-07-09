@@ -49,6 +49,7 @@ public class Manager : MonoBehaviour
             }
             if (transTime > 1.0f && reloadText)
             {
+                transform.GetChild(0).GetComponent<AudioSource>().Play();
                 MadLibs.Instance.RunTransition();
                 reloadText = false;
 

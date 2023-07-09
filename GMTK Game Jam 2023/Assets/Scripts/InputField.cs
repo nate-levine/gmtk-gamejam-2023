@@ -35,6 +35,7 @@ public class InputField : MonoBehaviour
     {
         if (inputField.isFocused == true)
         {
+            GetComponent<AudioSource>().Play();
             inputField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(9.0f / 8.0f, 9.0f / 8.0f, 1.0f);
 
             /*if (Input.GetKeyDown(KeyCode.Return))
@@ -59,6 +60,7 @@ public class InputField : MonoBehaviour
         }
         else if (inputField.isFocused == false)
         {
+            GetComponent<AudioSource>().Play();
             inputField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(8.0f / 9.0f, 8.0f / 9.0f, 1.0f);
 
         }
