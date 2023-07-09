@@ -10,6 +10,8 @@ public class Manager : MonoBehaviour
     public float transTime;
     public bool reloadText;
 
+    private bool title;
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,35 +22,50 @@ public class Manager : MonoBehaviour
     {
         reloadText = true;
         transTime = 1.0f;
+
+        title = true;
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && MadLibs.Instance.CheckFilled())
+        if (title)
         {
-            transTime = 0.0f;
-            reloadText = true;
+            if (Input.anyKey)
+            {
+                title = false;
 
-            ReviewButton.Instance.PressAnimation();
+                TitleImage.Instance.fadeAway = true;
+                ReviewButton.Instance.SlideIn();
+            }
         }
-        if (transTime > 1.0f && reloadText)
+        if (!title)
         {
-            MadLibs.Instance.RunTransition();
-            reloadText = false;
+            if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && MadLibs.Instance.CheckFilled())
+            {
+                transTime = 0.0f;
+                reloadText = true;
 
-            Mark.Instance.canChange = true;
-        }
-        else if (transTime < 2.0f)
-        {
-            transTime += 1.0f * Time.deltaTime;
-        }
-        else if (transTime > 2.0f)
-        {
-            transTime = 2.0f;
-        }
-        if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && !MadLibs.Instance.CheckFilled())
-        {
-            ReviewButton.Instance.StopAnimation();
+                ReviewButton.Instance.PressAnimation();
+            }
+            if (transTime > 1.0f && reloadText)
+            {
+                MadLibs.Instance.RunTransition();
+                reloadText = false;
+
+                Mark.Instance.canChange = true;
+            }
+            else if (transTime < 2.0f)
+            {
+                transTime += 1.0f * Time.deltaTime;
+            }
+            else if (transTime > 2.0f)
+            {
+                transTime = 2.0f;
+            }
+            if (Input.GetKeyDown(KeyCode.Return) && transTime == 2.0f && !MadLibs.Instance.CheckFilled())
+            {
+                ReviewButton.Instance.StopAnimation();
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ public class ReviewButton : MonoBehaviour
 
     public GameObject starEmitter;
 
+    public AudioSource click;
+
     bool down;
     float downCounter;
     bool stop;
@@ -28,6 +30,9 @@ public class ReviewButton : MonoBehaviour
 
     Vector3 startPos;
 
+    bool slideIn;
+    Vector3 slidePos;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,9 +41,13 @@ public class ReviewButton : MonoBehaviour
 
     private void Start()
     {
+        slidePos = transform.position;
+
         starEmitter = transform.GetChild(3).gameObject;
         var emmision = starEmitter.GetComponent<ParticleSystem>().emission;
         emmision.enabled = false;
+
+        click = GetComponent<AudioSource>();
 
         down = false;
         downCounter = 0.0f;
@@ -58,11 +67,19 @@ public class ReviewButton : MonoBehaviour
         g1 = color1.g;
         b1 = color1.b;
 
+        slideIn = false;
         startPos = transform.position;
+    }
+
+    public void SlideIn()
+    {
+        slideIn = true;
     }
 
     public void PressAnimation()
     {
+        click.Play();
+
         starEmitter.GetComponent<ParticleSystem>().Clear();
         starEmitter.GetComponent<ParticleSystem>().Play();
         var emmision = starEmitter.GetComponent<ParticleSystem>().emission;
@@ -82,6 +99,18 @@ public class ReviewButton : MonoBehaviour
 
     private void Update()
     {
+        if (slideIn)
+        {
+            if (transform.position.y - slidePos.y < 158.0f)
+            {
+                transform.position += new Vector3(0.0f, 150.0f, 0.0f) * Time.deltaTime;
+            }
+            if (transform.position.y - slidePos.y >= 158.0f)
+            {
+                slideIn = false;
+                startPos = transform.position;
+            }
+        }
         if (down)
         {
             downCounter += 8.0f * Time.deltaTime;
