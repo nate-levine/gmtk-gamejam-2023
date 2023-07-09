@@ -188,7 +188,7 @@ MonoBehaviour:
   - One creative take on Mark Brown this year was this.
   - This is another`(adjective)`Mark Brown, but with a completely different`(noun)`.
   - This Mark Brown uses`(noun)`as inspiration for his`(noun)`.
-  - There's always something fun about Mark Brown when he`(verbs)`. This Mark is
+  - There's always something fun about Mark Brown when he`(verb-s)`. This Mark is
     a great example of that.
   - Mark Brown doesn't always have to be`(adjective)`. This Mark proves just that.
   - One of the more creative twists on Mark Brown, in my opinion, was using his face
@@ -207,7 +207,7 @@ MonoBehaviour:
     of the bunch though, was this Mark.
   - If gardening is more your thing, look no further than`(adjective)`Mark Brown.
   - Another Mark I dug was the, very innovative,`(adjective)`Mark Brown.
-  - Here's a Mark Brown I wasn't expecting. A Mark that`(verbs)`twice as much as
+  - Here's a Mark Brown I wasn't expecting. A Mark that`(verb-s)`twice as much as
     normal.
   - There are always a boatload of`(adjective)`Mark Browns. In fact, there were two
     in the top 100. My pick of the pair was this Mark.
@@ -215,20 +215,20 @@ MonoBehaviour:
   - I love how a Mark Brown Jam can produce Marks, that are basically a funny joke.
     This includes`(adjective)`Mark.
   mid:
-  - I really enjoyed his creative use of his`(noun)`, and the fact that it`(verbs)`when
+  - I really enjoyed his creative use of his`(noun)`, and the fact that it`(verb-s)`when
     used.
-  - The juice in this one is just right. It feels great when he`(verbs)`his mouth.
-  - Mark Brown can`(verb)`in any direction, but is limited by the number of`(plural-noun)`he
+  - The juice in this one is just right. It feels great when he`(verb-s)`his mouth.
+  - He can`(verb)`in any direction, but is limited by the number of`(plural-noun)`he
     has.
   - He borrows from many other people for his`(noun)`.
-  - When he`(verbs)`, he also ends up spinning out of control.
+  - When he`(verb-s)`, he also ends up spinning out of control.
   - He has a great twist, where his`(noun)`is upside-down.
-  - Because his`(noun)`is tied to his leg, it really makes the way he`(verbs)`more
+  - Because his`(noun)`is tied to his leg, it really makes the way he`(verb-s)`more
     engaging.
   - He uses a`(noun)`to move around, like a(n)`(animal)`.
   - He has a(n)`(noun)`on his face, which lead to some pretty crazy shenanigains.
   - He's wears a charming`(noun)`which really matches his`(noun)`.
-  - He`(verbs)`, every time he`(verbs)`, which leads to some pretty chaotic circumstances.
+  - He`(verb-s)`, every time he`(verb-s)`, which leads to some pretty chaotic circumstances.
   - His skin is`(adjective)`, which allows him to`(verb)`.
   - He can`(verb)`like any other Mark Brown, but backwards.
   - He's afraid, because he is being constantly chased by a`(noun)`.
@@ -5477,7 +5477,7 @@ MonoBehaviour:
   staticTextPrefab: {fileID: 6653479180809016602, guid: 39b27c89653ffa64babe9feafe53bca4, type: 3}
   dynamicTextPrefab: {fileID: 7696011365407498343, guid: a19610b42a2512b4096e3e6dfc31c5b6, type: 3}
   phrase: 
-  maximumNumberOfLines: 3
+  maximumNumberOfLines: 4
   lineWidth: 1400
   lineSpacing: 65
   wordSpacing: 10
@@ -12363,6 +12363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f76437164e067e44b9a1a10961dfe71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hover: 0
+  hoverBuffer: 0
 --- !u!65 &919132148413330984
 BoxCollider:
   m_ObjectHideFlags: 0
