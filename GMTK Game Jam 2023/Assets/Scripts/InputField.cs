@@ -33,7 +33,6 @@ public class InputField : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("test");
         GetComponent<AudioSource>().Play();
     }
 
