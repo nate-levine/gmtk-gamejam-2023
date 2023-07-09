@@ -6,6 +6,8 @@ public class ReviewButton : MonoBehaviour
 {
     public static ReviewButton Instance { get; private set; }
 
+    public GameObject starEmitter;
+
     bool down;
     float downCounter;
     bool stop;
@@ -34,6 +36,10 @@ public class ReviewButton : MonoBehaviour
 
     private void Start()
     {
+        starEmitter = transform.GetChild(3).gameObject;
+        var emmision = starEmitter.GetComponent<ParticleSystem>().emission;
+        emmision.enabled = false;
+
         down = false;
         downCounter = 0.0f;
         stop = false;
@@ -57,6 +63,16 @@ public class ReviewButton : MonoBehaviour
 
     public void PressAnimation()
     {
+        starEmitter.GetComponent<ParticleSystem>().Clear();
+        starEmitter.GetComponent<ParticleSystem>().Play();
+        var emmision = starEmitter.GetComponent<ParticleSystem>().emission;
+        emmision.enabled = true;
+
+        var main = starEmitter.GetComponent<ParticleSystem>().main;
+        main.maxParticles = Random.Range(1, 6);
+
+        Debug.Log(main.maxParticles);
+
         down = true;
     }
     public void StopAnimation()
