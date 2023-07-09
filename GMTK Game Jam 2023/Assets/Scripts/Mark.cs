@@ -55,7 +55,7 @@ public class Mark : MonoBehaviour
             ChangeParts();
         }
 
-        transform.position = new Vector3(400.0f, 70.0f, 100.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), 0.0f, 0.0f);
+        transform.position = new Vector3(400.0f, 100.0f, 100.0f) + new Vector3(TransitionFunc(Manager.Instance.transTime), 0.0f, 0.0f);
     }
     public float TransitionFunc(float x)
     {

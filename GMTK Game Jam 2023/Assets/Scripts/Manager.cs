@@ -29,6 +29,8 @@ public class Manager : MonoBehaviour
             transTime = 0.0f;
             reloadText = true;
 
+            ReviewButton.Instance.PressAnimation();
+
         }
         if (transTime > 1.0f && reloadText)
         {
